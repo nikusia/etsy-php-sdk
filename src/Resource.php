@@ -201,23 +201,36 @@ class Resource {
    *
    * @return array
    */
-  public function toArray() {
-    $array = [];
-    $properties = get_object_vars($this)['_properties'];
-    foreach($properties as $property => $value) {
-      if(is_object($value)) {
-        if($value instanceof Resource) {
-          $array[$property] = $value->toArray();
-        }
-        else {
-          $array[$property] = get_object_vars($value);
-        }
-      }
-      else {
-        $array[$property] = $value;
-      }
-    }
-    return $array;
-  }
+	public function toArray() {
+		$array = [];
+		$properties = get_object_vars($this)['_properties'];
+		foreach($properties as $property => $value) {
+			if(is_object($value)) {
+				if($value instanceof Resource) {
+					$array[$property] = $value->toArray();
+				}
+				else {
+					$array[$property] = get_object_vars($value);
+				}
+			} elseif (is_array($value)) {
+				$newvalue = [];
+				foreach($value as $e) {
+					if(is_object($e)) {
+						if($e instanceof Resource) {
+							$newvalue[] = $e->toArray();
+						} else {
+							$newvalue[] = get_object_vars($e);
+						}
+					} else {
+						$newvalue[] = $e;
+					}
+				}
+				$array[$property] = $newvalue;
+			} else {
+				$array[$property] = $value;
+			}
+		}
+		return $array;
+	}
 
 }

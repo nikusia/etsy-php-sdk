@@ -160,10 +160,10 @@ class Collection {
    *
    * @return array
    */
-  public function toJson() {
-    return array_map(function($resource) {
-      return $resource->toJson();
-    }, $this->data);
-  }
+	public function toJson() {
+		return "[".implode(',', array_map(function($resource) {
+				return $resource->toJson();
+			}, $this->data) )."]";
+	}
 
 }
