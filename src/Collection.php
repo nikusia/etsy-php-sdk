@@ -158,7 +158,7 @@ class Collection {
   /**
    * Returns the collections resources as an array of JSON strings.
    *
-   * @return array
+   * @return string
    */
 	public function toJson() {
 		return "[".implode(',', array_map(function($resource) {
