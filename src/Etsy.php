@@ -67,6 +67,7 @@ class Etsy {
     string $resource
   ) {
     $collection = new Collection($resource, $response->uri);
+	$collection->count = $response->count;
     if(!count($response->results) || !isset($response->results)) {
       return $collection;
     }
