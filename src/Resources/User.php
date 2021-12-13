@@ -14,11 +14,27 @@ use Etsy\Exception\SdkException;
  */
 class User extends Resource {
 
+	/**
+	 * Get user by Id.
+	 *
+	 * @param $user_id
+	 *
+	 * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\User
+	 */
+	public function getUserById($user_id) {
+		return $this->request(
+			"GET",
+			"/application/users/{$user_id}",
+			"getUser"
+		);
+	}
+
   /**
    * Get all addresses for this user.
    *
    * @param array $params
-   * @return Etsy\Collection[\Etsy\Resources\UserAddress]
+   *
+   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Collection
    */
   public function getAddresses(array $params = []) {
     return $this->request(
@@ -35,7 +51,8 @@ class User extends Resource {
    * @NOTE this endpoint is not yet active.
    *
    * @param integer/string $address_id
-   * @return Etsy\Resources\UserAddress
+   *
+   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\UserAddress
    */
   public function getAddress($address_id) {
     return $this->request(
@@ -48,7 +65,7 @@ class User extends Resource {
   /**
    * Gets the user's Etsy shop.
    *
-   * @return Etsy\Resources\Shop
+   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\Shop
    */
   public function getShop() {
     return $this->request(
