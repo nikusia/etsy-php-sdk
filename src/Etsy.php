@@ -18,7 +18,7 @@ class Etsy {
   protected $client_id;
 
   /**
-   * @var Etsy\OAuth\Client
+   * @var OAuth\Client
    */
   public static $client;
 
@@ -95,7 +95,7 @@ class Etsy {
   /**
    * Creates a new Etsy resource.
    *
-   * @param json $record
+   * @param \stdClass $record
    * @param string $resource
    * @return mixed
    */
@@ -121,7 +121,7 @@ class Etsy {
   /**
    * Only supports getting the user for who the current API KEY is associated with.
    *
-   * @return Etsy\Resources\User
+   * @return \Etsy\Resources\User
    */
   public function getUser() {
     $user_id = explode(".", $this->api_key)[0];
@@ -133,7 +133,7 @@ class Etsy {
    * Gets an Etsy shop. If no shop_id is specified the current user will be queried for an associated shop.
    *
    * @param int $shop_id
-   * @return Etsy\Resources\Shop
+   * @return \Etsy\Resources\Shop
    */
   public function getShop(
     int $shop_id = null
@@ -150,7 +150,7 @@ class Etsy {
    *
    * @param string $keyword
    * @param array $params
-   * @return Etsy\Collection[Etsy\Resources\Shop]
+   * @return \Etsy\Collection[Etsy\Resources\Shop]
    */
   public function getShops($keyword, $params = []) {
     if(!strlen(trim($keyword))) {
@@ -167,7 +167,7 @@ class Etsy {
   /**
    * Retrieves the full hierarchy tree of seller taxonomy nodes.
    *
-   * @return Etsy\Collection[Etsy\Resources\Taxonomy]
+   * @return \Etsy\Collection[Etsy\Resources\Taxonomy]
    */
   public function getSellerTaxonomy() {
     $response = static::$client->get(
@@ -180,7 +180,7 @@ class Etsy {
    * Retrieves a list of available shipping carriers and the mail classes associated with them for a given country
    *
    * @param string $iso_code
-   * @return Etsy\Collection[Etsy\Resources\ShippingCarrier]
+   * @return \Etsy\Collection[Etsy\Resources\ShippingCarrier]
    */
   public function getShippingCarriers($iso_code) {
     $response = static::$client->get(
@@ -198,7 +198,7 @@ class Etsy {
    * @link https://developers.etsy.com/documentation/reference#operation/getListing
    * @param integer|string $listing_id
    * @param array $includes
-   * @return Etsy\Resources\Listing
+   * @return \Etsy\Resources\Listing
    */
   public function getListing(
     $listing_id,
@@ -218,7 +218,7 @@ class Etsy {
    *
    * @link https://developers.etsy.com/documentation/reference#operation/findAllListingsActive
    * @param array $params
-   * @return Etsy\Collection[Etsy\Resources\Listing]
+   * @return \Etsy\Collection[Etsy\Resources\Listing]
    */
   public function getPublicListings(array $params = []) {
     $response = static::$client->get(
@@ -234,7 +234,7 @@ class Etsy {
    * @link https://developers.etsy.com/documentation/reference#operation/getListingsByListingIds
    * @param array $listing_ids
    * @param array $includes
-   * @return Etsy\Collection[Etsy\Resources\Listing]
+   * @return \Etsy\Collection[Etsy\Resources\Listing]
    */
   public function getListings(
     array $listing_ids,

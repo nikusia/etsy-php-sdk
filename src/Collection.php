@@ -63,7 +63,7 @@ class Collection {
   /**
    * Returns only the first result. Primarily used for fetching single resources.
    *
-   * @return Etsy\Resource
+   * @return Resource|bool
    */
   public function first() {
     if(!count($this->data)) {
@@ -106,9 +106,9 @@ class Collection {
    */
   public function paginate($results = 100) {
     // Limit max results to 500.
-    if($results > 500) {
-      $results = 500;
-    }
+//    if($results > 500) {
+//      $results = 500;
+//    }
     if(!in_array($this->resource, self::PAGINATION_SUPPORT)) {
       throw new SdkException("The {$this->resource} resource does not support pagination.");
     }
@@ -132,7 +132,7 @@ class Collection {
   /**
    * Gets the next page (subset of records).
    *
-   * @return Collection
+   * @return Collection|bool
    */
   private function nextPage() {
     $limit = $this->params['limit'] ?? 25;
