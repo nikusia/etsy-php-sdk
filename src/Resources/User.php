@@ -19,7 +19,7 @@ class User extends Resource {
 	 *
 	 * @param $user_id
 	 *
-	 * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\User
+	 * @return \Etsy\Collection|\Etsy\Resources\User
 	 */
 	public function getUserById($user_id) {
 		return $this->request(
@@ -34,7 +34,7 @@ class User extends Resource {
    *
    * @param array $params
    *
-   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Collection
+   * @return \Etsy\Collection[\Etsy\Resources\UserAddress]
    */
   public function getAddresses(array $params = []) {
     return $this->request(
@@ -52,7 +52,7 @@ class User extends Resource {
    *
    * @param integer/string $address_id
    *
-   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\UserAddress
+   * @return \Etsy\Collection|\Etsy\Resources\UserAddress
    */
   public function getAddress($address_id) {
     return $this->request(
@@ -65,7 +65,7 @@ class User extends Resource {
   /**
    * Gets the user's Etsy shop.
    *
-   * @return \Etsy\Collection|\Etsy\Resources\Etsy\Resources\Shop
+   * @return \Etsy\Collection|\Etsy\Resources\Shop
    */
   public function getShop() {
     return $this->request(
