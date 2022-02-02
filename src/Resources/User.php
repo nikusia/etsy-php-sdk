@@ -25,7 +25,7 @@ class User extends Resource {
 		return $this->request(
 			"GET",
 			"/application/users/{$user_id}",
-			"getUser"
+			"User"
 		);
 	}
 
